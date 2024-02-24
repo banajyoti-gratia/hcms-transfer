@@ -54,73 +54,72 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                         <p class="alert alert-success"></p>
-                                         </div>
-                                        </div>
-                                       <div class="row">
-                                        <div class="col">
-                                    <div class="d-flex justify-content-center py-2">
-                                        <a href="index.html">
-                                            <img src="{{ asset('assets/img/logo.png') }}"
-                                                style="background-color: rgb(10, 10, 129)" max-width="80px"
-                                                height="110px" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="pt-1 pb-1">
-                                        <h6 class="card-title text-center pb-0 fs-4">Panchayat & Rural Development</h5>
-                                            <p class="text-center small" style="font-size: 15px">Department, Assam</p>
-                                            <p class="text-center small" style="font-size: 26px">HRMS</p>
-                                    </div>
-                                    {{-- <form action="{{ route('post-login') }}" method="POST" id="login_form"> --}}
-                                    <form action="{{ route('post-login') }}" method="POST" id="login_form"
-                                        class="row g-3 needs-validation" novalidate>
-                                        {{ csrf_field() }}
-                                        <div class="col-12">
-                                            <label for="username" class="form-label">Username</label>
-                                            <div class="input-group has-validation">
-                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                <input type="text" value="{{ old('username') }}" name="username"
-                                                    class="form-control" id="username" required>
-                                                <div class="invalid-feedback">Please enter your username.</div>
+                                            <div class="d-flex justify-content-center py-2">
+                                                <a href="index.html">
+                                                    <img src="{{ asset('assets/img/logo.png') }}"
+                                                        style="background-color: rgb(10, 10, 129)" max-width="80px"
+                                                        height="110px" alt="">
+                                                </a>
                                             </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <label for="password" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control"
-                                                id="password" required>
-                                            <div class="invalid-feedback">Please enter your password!</div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember"
-                                                    value="true" id="rememberMe">
-                                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                                            <div class="pt-1 pb-1">
+                                                <h6 class="card-title text-center pb-0 fs-4">Panchayat & Rural
+                                                    Development</h5>
+                                                    <p class="text-center small" style="font-size: 15px">Department,
+                                                        Assam</p>
+                                                    <p class="text-center small" style="font-size: 26px">HRMS</p>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-secondary rounded-pill w-100" type="submit">Login</button>
-                                        </div>
-                                        {{-- <div class="col-12">
+                                            <form action="{{ route('post-login') }}" method="POST" id="login_form"
+                                                class="row g-3 needs-validation" novalidate>
+                                                {{ csrf_field() }}
+                                                <div class="col-12">
+                                                    <label for="username" class="form-label">Username</label>
+                                                    <div class="input-group has-validation">
+                                                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                        <input type="text" value="{{ old('username') }}"
+                                                            name="username" class="form-control" id="username"
+                                                            required>
+                                                        <div class="invalid-feedback">Please enter your username.</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <label for="password" class="form-label">Password</label>
+                                                    <input type="password" name="password" class="form-control"
+                                                        id="password" required>
+                                                    <div class="invalid-feedback">Please enter your password!</div>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="remember"
+                                                            value="true" id="rememberMe">
+                                                        <label class="form-check-label" for="rememberMe">Remember
+                                                            me</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <button class="btn btn-secondary rounded-pill w-100"
+                                                        type="submit">Login</button>
+                                                </div>
+                                                {{-- <div class="col-12">
                       <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
                     </div> --}}
-                                    </form>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="credits">
+                                        <!-- All the links in the footer should remain intact. -->
+                                        <!-- You can delete the links only if you purchased the pro version. -->
+                                        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                                        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+                                        Designed by <a href="https://bootstrapmade.com/">&nbsp;Gratia Technology.</a>
+                                    </div>
 
                                 </div>
                             </div>
-
-                            <div class="credits">
-                                <!-- All the links in the footer should remain intact. -->
-                                <!-- You can delete the links only if you purchased the pro version. -->
-                                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                Designed by <a href="https://bootstrapmade.com/">&nbsp;Gratia Technology.</a>
-                            </div>
-
                         </div>
-                    </div>
-                </div>
 
             </section>
 
@@ -156,12 +155,14 @@
                     dataType: 'json',
                     success: function(data) {
                         $(e).find("[type='submit']").html("Login");
-                        if (data.status) {                           
+                        if (data.status) {
                             var message = data.message;
+                            alert(message);
                             window.location.href = data.redirect;
                         } else {
                             $(".alert").remove();
                             $.each(data.errors, function(key, val) {
+                                alert(errors);
                                 $("#errors-list").append(
                                     "<div class='alert alert-danger'>" + val +
                                     "</div>");
@@ -172,7 +173,6 @@
                 return false;
             });
         });
-        
     </script>
 </body>
 

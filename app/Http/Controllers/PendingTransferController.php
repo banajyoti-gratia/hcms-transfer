@@ -65,7 +65,6 @@ class PendingTransferController extends Controller
             'employees.status'                                    
         )
         ->get();
-     
         return view( 'pages.pending-transfer-dashboard' , [
             'districts'      => $district, 
             'blocks'         => $block,
@@ -210,6 +209,47 @@ class PendingTransferController extends Controller
                 }
             })->addIndexColumn()->make(true);
         }
+    }
+
+    public function pendingEmployeeListView(Request $request)
+    {
+        if ($request->ajax()) {
+            $employee_code = $request->input('code');
+            if (!empty($employee_code)) {
+                $check_if_exist = Employeee::where('employee_code', '=', $employee_code)->count();
+                if ($check_if_exist == 1) {
+                    $newEmployee =   NewEmployeeTransfer::join('employees', 'employees.employee_id', '=', 'new_emplyoee_transfers.employee_id')
+                    ->join('designations', 'designations.designation_id', '=', 'new_emplyoee_transfers.designation_id')
+                    ->join('districts as Old_district', 'Old_district.district_code', '=', 'new_emplyoee_transfers.old_district_id')
+                    ->leftjoin('blocks as old_block', 'old_block.block_id', '=', 'new_emplyoee_transfers.old_block_id')
+                    ->leftjoin('gram_panchyats as old_gp', 'old_gp.gram_panchyat_id', '=', 'new_emplyoee_transfers.old_gram_panchayat_id')
+                    ->join('districts as new_district', 'new_district.district_code', '=', 'new_emplyoee_transfers.new_district_id')
+                    ->leftjoin('blocks as new_block', 'new_block.block_id', '=', 'new_emplyoee_transfers.new_block_id')
+                    ->leftjoin('gram_panchyats as new_gp', 'new_gp.gram_panchyat_id', '=', 'new_emplyoee_transfers.new_gram_panchayat_id')
+                    ->where('new_emplyoee_transfers.employee_code', '=', $employee_code)
+                    ->select(
+                        'employees.name',
+                        'new_emplyoee_transfers.employee_id',
+                        'new_emplyoee_transfers.employee_code',
+                        'designations.designation_name',
+                        'Old_district.district_name',
+                        'old_block.block_name',
+                        'old_gp.gram_panchyat_name',
+                        'new_district.district_name as new_dis',
+                        'new_block.block_name as new_block',
+                        'new_gp.gram_panchyat_name as new_gp'                                    
+                    )->get();
+                    
+                    $returnData['msg'] = 'success';
+                    $returnData['emp_record'] = $newEmployee;
+                } else {
+                    $returnData['msg'] = 'failed';
+                }
+            } else {
+                $returnData['msg'] = 'failed';
+            }
+        }
+        return json_encode($returnData);
     }
 
 }

@@ -1,5 +1,4 @@
 @include('layouts.head')
-{{-- @section('custom-head') --}}
 <style>
     /* CSS */
 .button-71 {
@@ -41,10 +40,8 @@
   box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
   transform: scale(1.05);
 }
-
-
 </style>
-{{-- @endsection --}}
+
 <body>
     @include('layouts.header')
     @include('layouts.sidebar')
@@ -54,7 +51,7 @@
             <div class="col-md-6">
                 <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                     <div class="card-body">
-                        <h3 class="card-title" style="text-align: center;font-size:35px">Transfer</h5>
+                        <h3 class="card-title text-decoration-underline" style="text-align: center;font-size:35px">Transfer</h5>
                         <p class="card-text" style="text-align: center"><a href="transfer-dashboard" class=""><img src="{{ asset('assets/img/blue.png') }}" alt="" width="150" height="150"></a></p><br>
                         <p class="card-text" style="text-align: center"><a href="transfer-dashboard" class="button-71">Click Here</a></p>
                         
@@ -64,9 +61,9 @@
             <div class="col-md-6">
                 <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                     <div class="card-body">
-                        <h3 class="card-title" style="text-align: center;font-size:35px">Transfer</h5>
+                        <h3 class="card-title text-decoration-underline" style="text-align: center;font-size:35px">Transfer</h5>
                             <p class="card-text" style="text-align: center"><img src="{{ asset('assets/img/transfer.png') }}" alt="" width="150" height="150"></p><br>
-                            <p class="card-text" style="text-align: center"><a href="#" class="button-71">Click Here</a></p>
+                            <p class="card-text" style="text-align: center"><a href="error" class="button-71">Click Here</a></p>
                     </div>
                 </div>
             </div>

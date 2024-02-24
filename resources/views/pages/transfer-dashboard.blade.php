@@ -144,6 +144,9 @@
             <div class="modal-dialog modal-lg modal-top modal-notify modal-primary" role="document">
                 <!--Content-->
                 <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                     <!--Header-->
                     <div class="card">
                         <div class="card-body" style="text-align:center">
@@ -160,6 +163,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,6 +175,10 @@
             <div class="modal-dialog modal-lg modal-top modal-notify modal-primary" role="document">
                 <!--Content-->
                 <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
                     <!--Header-->
                     <div class="card">
                         <div class="card-body" style="text-align:center">
@@ -249,6 +259,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -272,7 +285,9 @@
         /* AJAX for fetching Blocks*/
 
         $('#block').empty();
+        $('#block').append($("<option value=''>Select</option>"));
         $('#gramPanchayat').empty();
+        $('#gramPanchayat').append($("<option value=''>Select</option>"));
         $(document).on('change', '#district', function() {
             $('.page-loader-wrapper').fadeIn();
             var dis_id = $('#district').val();
@@ -353,6 +368,7 @@
         /* AJAX for fetching Employee Designation*/
 
         $('#designation').empty();
+        $('#designation').append($("<option value=''>Select</option>"));
         $(document).on('change', '#level', function(e) {
             e.preventDefault();
             $('.page-loader-wrapper').fadeIn();
@@ -447,7 +463,7 @@
                         render: function(data, type, row, meta) {
                             if (type === 'display') {
                                 data = '<a href="' + row.employee_code +
-                                    '" style="color:blue;" id="employee_record" title="View Employee Details"><i class="bi bi-eye" style="font-size: 22px"></i></a>';
+                                    '" id="employee_record" title="View Employee Details"><i class="bi bi-eye" style="font-size: 22px; color: #949b23;"></i></a>';
                             }
                             return data;
                         }
@@ -462,7 +478,7 @@
                                 "' data-district_code='" + row.district_code + "' data-block_id='" +
                                 row.block_id + "' data-gram_panchayat_id='" + row
                                 .gram_panchayat_id +
-                                "' class='employeeTransfer' style='padding: 10px' id='employee_record' title='Transfer Employee' data-bs-toggle='modal' data-bs-target='#transferEmployee'><i class='bi bi-send' style='font-size: 25px'></i></a>"
+                                "' class='employeeTransfer' style='padding: 10px' id='employee_record' title='Transfer Employee' data-bs-toggle='modal' data-bs-target='#transferEmployee'><i class='bi bi-send' style='font-size: 25px; color: #5d9b23;'></i></a>"
                         }
                     },
                 ],
@@ -487,6 +503,8 @@
             var district_name = $(this).data('district_name');
             var block_name = $(this).data('block_name');
             var gram_panchyat_name = $(this).data('gram_panchyat_name');
+            var email = $(this).data('email');
+            var mobile = $(this).data('mobile');
             $.ajax({
                 type: "POST",
                 url: "{{ route('get-employee-list') }}",
@@ -499,6 +517,8 @@
                     'district_name': district_name,
                     'block_name': block_name,
                     'gram_panchyat_name': gram_panchyat_name,
+                    'mobile': mobile,
+                    'email': email,
                     "_token": "{{ csrf_token() }}"
                 },
                 success: function(data) {
@@ -510,18 +530,22 @@
                             '<div class="row" style="padding:0 10px;margin-bottom:20px;margin-top:30px;">';
                         for (var i = 0; i < data.emp_record.length; i++) {
                             employee_record_div +=
-                                '<div class="col-md-4"><label style="color:black;font-weight:bold;font-size:18px;">Employee Name</label><p><br>' +
+                                '<div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Employee Name</u></label><p><br>' +
                                 data.emp_record[i].name +
-                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:16px;">Employee Code</label><p><br>' +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Employee Code</u></label><p><br>' +
                                 data.emp_record[i].employee_code +
-                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:16px;">Current Designation</label><p><br>' +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Current Designation</u></label><p><br>' +
                                 data.emp_record[i].designation_name +
-                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:16px;">Current District</label><p><br>' +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Current District</u></label><p><br>' +
                                 data.emp_record[i].district_name +
-                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:16px;">Current Block</label><p><br>' +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Current Block</u></label><p><br>' +
                                 data.emp_record[i].block_name +
-                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:16px;">Current Gram Panchayat</label><p><br>' +
-                                data.emp_record[i].gram_panchyat_name;
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Current Gram Panchayat</u></label><p><br>' +
+                                data.emp_record[i].gram_panchyat_name +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Mobile No</u></label><p><br>' +
+                                data.emp_record[i].mobile +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Email</u></label><p><br>' +
+                                data.emp_record[i].email;
                         }
                         employee_record_div += '</div>';
                         $('.employee_records').html(employee_record_div)

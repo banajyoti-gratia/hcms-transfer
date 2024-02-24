@@ -36,6 +36,7 @@ Route::get('/pending-transfer-get-block', 'PendingTransferController@getPendingB
 Route::get('/pending-transfer-get-gp', 'PendingTransferController@getPendingGramPanchayat')->name('pending-transfer-get-gp');
 Route::get('/pending-transfer-get-designation', 'PendingTransferController@getPendingDesignation')->name('pending-transfer-get-designation');
 Route::get('/get-pending-employee-deatils', 'PendingTransferController@pendingEmployeeDetails')->name('get-pending-employee-deatils');
+Route::post('/view-pending-employee-list', 'PendingTransferController@pendingEmployeeListView')->name('get-pending-employee-list');
 
 
 

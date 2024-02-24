@@ -116,123 +116,44 @@
                         <!-- End Table with stripped rows -->
                     </div>
                 </div>
+            </div>
+        </div>
     </section>
-    </div>
-    </div>
-    <!-- Modal for view Employee Details -->
-    {{-- <div class="modal fade top" id="transfer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        data-backdrop="true" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-top modal-notify modal-primary" role="document">
-            <!--Content-->
-            <div class="modal-content">
-                <!--Header-->
-                <div class="card">
-                    <div class="card-body" style="text-align:center">
-                        <h3 class="card-title text-decoration-underline" style="font-size: 30px;">Employee Details
-                        </h3>
-                        <!--Body-->
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="row"
-                                    style="font-size:2opx;box-shadow: 0 4px 8px 0 rgba(2, 2, 2, 0.945), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                                    <div class="employee_records" style="font-size: 17px;color: #22937f"></div>
+    <!-- Modal for view Current Employee Details -->
+    <section class="section">
+        <div class="modal fade top" id="pendingList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            data-backdrop="true" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-top modal-notify modal-primary" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!--Header-->
+                    <div class="card">
+                        <div class="card-body" style="text-align:center">
+                            <h3 class="card-title text-decoration-underline" style="font-size: 30px;">Employee Details
+                            </h3>
+                            <!--Body-->
+                            <div class="modal-body">
+                                <div class="container">
+                                    <div class="row"
+                                        style="font-size:2opx;box-shadow: 0 4px 8px 0 rgba(2, 2, 2, 0.945), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                        <div class="employee_records" style="font-size: 17px;color: #22937f"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- Modal for Transfer Employee -->
-    {{-- <div class="modal fade top" id="transferEmployee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        data-backdrop="true" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-top modal-notify modal-primary" role="document">
-            <!--Content-->
-            <div class="modal-content">
-                <!--Header-->
-                <div class="card">
-                    <div class="card-body" style="text-align:center">
-                        @if (session('success'))
-                            <div class="alert alert-success">{{ session('success') }}</div>
-                        @endif
-                        <!--Body-->
-                        <h3 class="card-title text-decoration-underline" style="font-size: 30px;">Employee
-                            Transefer
-                        </h3>
-                        <div class="modal-body">
-                            <div class="container"
-                                style="font-size:2opx;box-shadow: 0 4px 8px 0 rgba(2, 2, 2, 0.945), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                                <form id="transfer_form" enctype="multipart/form-data" style="padding: 20px">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="employee_id" id="employee_id">
-                                    <input type="hidden" name="employee_code" id="employee_code">
-                                    <input type="hidden" name="district_code" id="district_code">
-                                    <input type="hidden" name="block_id" id="old_block_id">
-                                    <input type="hidden" name="gram_panchayat_id" id="old_gram_panchayat_id">
-                                    <input type="hidden" name="designation_id" id="designation_id">
-                                    <div class="row mb-3">
-                                        <div class="col-sm-4">
-                                            <label class="col-sm-12 col-form-label"><strong>New
-                                                    District</strong>&nbsp;<span style="color:red">*</span></label>
-                                            <select class="form-select" name="new_district_id"
-                                                aria-label="Default select example" id="new_district" required>
-                                                <option selected disabled>Select District</option>
-                                                @foreach ($districts as $district)
-                                                    <option value="{{ $district->district_code }}">
-                                                        {{ $district->district_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label class="col-sm-12 col-form-label"><strong>New
-                                                    Block</strong>&nbsp;<span style="color:red">*</span></label>
-                                            <select class="form-select" name="new_block_id"
-                                                aria-label="Default select example" id="new_block" required>
-                                                <option selected disabled>Select Block</option>
-                                                @foreach ($blcks as $block)
-                                                    <option value="{{ $block->block_id }}">
-                                                        {{ $block->block_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <label class="col-sm-12 col-form-label"><strong>New Gram
-                                                    Panchayat</strong>&nbsp;<span
-                                                    style="color:red">*</span></label>
-                                            <select class="form-select" name="new_gram_panchayat_id"
-                                                aria-label="Default select example" id="new_gramPanchayat"
-                                                required>
-                                                <option selected disabled>Select Gram Panchayat</option>
-                                                @foreach ($gps as $gramPanchayat)
-                                                    <option value="{{ $gramPanchayat->gram_panchyat_id }}">
-                                                        {{ $gramPanchayat->gram_panchyat_name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div><br>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><strong>Remarks</strong>&nbsp;<span
-                                                style="color:red">*</span></span>
-                                        <textarea class="form-control" name="remarks" aria-label="With textarea"></textarea>
-                                    </div><br>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-12">
-                                            <button type="submit" class="btn btn-outline-success">Submit
-                                                Form</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </section>
+
+
 @section('custom-script')
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.js"></script>
@@ -245,10 +166,12 @@
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
     <script type="text/javascript">
-        /* AJAX for fetching Blocks*/
+        /* AJAX for fetching Pending Blocks*/
 
         $('#block').empty();
+        $('#block').append($("<option value=''>Select</option>"));
         $('#gramPanchayat').empty();
+        $('#gramPanchayat').append($("<option value=''>Select</option>"));
         $(document).on('change', '#district', function() {
             $('.page-loader-wrapper').fadeIn();
             var dis_id = $('#district').val();
@@ -281,7 +204,7 @@
             })
         });
 
-        /* AJAX for fetching Gram Panchayat*/
+        /* AJAX for fetching Pending Gram Panchayat*/
 
         $(document).on('change', '#block', function() {
             var block_id = $('#block').val();
@@ -326,9 +249,10 @@
             })
         });
 
-        /* AJAX for fetching Employee Designation*/
+        /* AJAX for fetching Pending Employee Designation*/
 
         $('#designation').empty();
+        $('#designation').append($("<option value=''>Select</option>"));
         $(document).on('change', '#level', function(e) {
             e.preventDefault();
             $('.page-loader-wrapper').fadeIn();
@@ -374,7 +298,7 @@
             })
         })
 
-        /* jQuery for Fetching data for Datatable*/
+        /* jQuery for Fetching data for Pending Employee Deatails in Datatable*/
 
         $(function() {
             $('#example').DataTable({
@@ -428,7 +352,7 @@
                         render: function(data, type, row, meta) {
                             if (type === 'display') {
                                 data = '<a href="' + row.employee_code +
-                                    '" style="color:blue;" id="" title="View Employee Details"><i class="bi bi-eye" style="font-size: 22px"></i></a>';
+                                    '" style="color:#71239b ;" id="view_current_details" title="View Employee Details"><i class="bi bi-eye" style="font-size: 22px"></i></a>';
                             }
                             return data;
                         }
@@ -437,16 +361,16 @@
             });
         });
 
-        /*On click Search Reload Datatable*/
+        /*On click Search Pending Employee Datatable Reload*/
 
         $(document).on('click', '.search', function(e) {
             e.preventDefault();
             $('#example').DataTable().ajax.reload();
         });
 
-        /* jQuery for view Employee List*/
+        /* jQuery for view Pending Employee List*/
 
-        $(document).on('click', '#employee_record', function(e) {
+        $(document).on('click', '#view_current_details', function(e) {
             e.preventDefault();
             var code = $(this).attr('href');
             var employee_code = $(this).data('employee_code');
@@ -455,9 +379,12 @@
             var district_name = $(this).data('district_name');
             var block_name = $(this).data('block_name');
             var gram_panchyat_name = $(this).data('gram_panchyat_name');
+            var cuurent_district_name = $(this).data('new_dis');
+            var current_block_name = $(this).data('new_block');
+            var current_gram_panchyat_name = $(this).data('new_gp');
             $.ajax({
                 type: "POST",
-                url: "{{ route('get-employee-list') }}",
+                url: "{{ route('get-pending-employee-list') }}",
                 dataType: 'json',
                 data: {
                     'code': code,
@@ -467,32 +394,42 @@
                     'district_name': district_name,
                     'block_name': block_name,
                     'gram_panchyat_name': gram_panchyat_name,
+                    'new_dis': cuurent_district_name,
+                    'new_block': current_block_name,
+                    'new_gp': current_gram_panchyat_name,
                     "_token": "{{ csrf_token() }}"
                 },
                 success: function(data) {
                     console.log(data)
                     if (data.msg == 'success') {
-                        $('#transfer').modal('show');
+                        $('#pendingList').modal('show');
 
-                        var employee_record_div =
+                        var pending_employee_record_div =
                             '<div class="row" style="padding:0 10px;margin-bottom:20px;margin-top:30px;">';
                         for (var i = 0; i < data.emp_record.length; i++) {
-                            employee_record_div +=
-                                '<div class="col-md-4"><label style="color:black;font-weight:bold;font-size:18px;">Employee Name</label><p><br>' +
+                            pending_employee_record_div +=
+                                '<div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Employee Name</u></label><p><br>' +
                                 data.emp_record[i].name +
-                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:16px;">Employee Code</label><p><br>' +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Employee Code</u></label><p><br>' +
                                 data.emp_record[i].employee_code +
-                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:16px;">Current Designation</label><p><br>' +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Designation</u></label><p><br>' +
                                 data.emp_record[i].designation_name +
-                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:16px;">Current District</label><p><br>' +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Old District</u></label><p><br>' +
                                 data.emp_record[i].district_name +
-                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:16px;">Current Block</label><p><br>' +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Old Block</u></label><p><br>' +
                                 data.emp_record[i].block_name +
-                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:16px;">Current Gram Panchayat</label><p><br>' +
-                                data.emp_record[i].gram_panchyat_name;
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Old Gram Panchayat</u></label><p><br>' +
+                                data.emp_record[i].gram_panchyat_name +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Current District</u></label><p><br>' +
+                                data.emp_record[i].new_dis +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Current Block</u></label><p><br>' +
+                                data.emp_record[i].new_block +
+                                '</p></div><div class="col-md-4"><label style="color:black;font-weight:bold;font-size:20px;"><u>Current Gram Panchayat</u></label><p><br>' +
+                                data.emp_record[i].new_gp;
+
                         }
-                        employee_record_div += '</div>';
-                        $('.employee_records').html(employee_record_div)
+                        pending_employee_record_div += '</div>';
+                        $('.employee_records').html(pending_employee_record_div)
                     }
                     if (data.msg == 'failed') {
 
@@ -515,128 +452,6 @@
                 }
             })
         });
-
-        /*jQuery for Get Data For Employeee */
-
-        $(document).on('click', '.employeeTransfer', function() {
-
-            $('#employee_code').val($(this).data('employee_code'));
-            $('#employee_id').val($(this).data('employee_id'));
-            $('#designation_id').val($(this).data('designation_id'));
-            $('#district_code').val($(this).data('district_code'));
-            $('#old_block_id').val($(this).data('block_id'));
-            $('#old_gram_panchayat_id').val($(this).data('gram_panchayat_id'));
-        });
-
-        /*AJAX for Employee Transfer*/
-
-        $(document).on('submit', '#transfer_form', function(e) {
-            // e.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: "{{ route('transfer-employee') }}",
-                dataType: 'json',
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    if (data.message == "success") {
-                        $("#transfer_form")[0].reset();
-                        $('#transfer').modal('hide');
-                        $('#example').DataTable().ajax.reload();
-                        Swal.fire(
-                            'Success!',
-                            'Employee Transfer Request Sent!',
-                            'success'
-                        )
-                    }
-                },
-            });
-        })
-
-        /* AJAX for get block for Modal */
-
-        $('#new_block').empty();
-        $('#new_gramPanchayat').empty();
-        $('#new_district').on('change', function(e) {
-            e.preventDefault()
-            var dis_id = $(this).val();
-            $('.page-loader-wrapper').fadeIn();
-            $.ajax({
-                type: "GET",
-                url: "{{ route('get-block') }}",
-                dataType: 'json',
-                data: {
-                    'dis_id': dis_id,
-                    "_token": "{{ csrf_token() }}"
-                },
-                success: function(data) {
-                    $('.page-loader-wrapper').fadeOut();
-                    $('#new_block').empty();
-                    $('#new_block').append($("<option value=''>Select</option>"));
-                    $.each(data, function(index, value) {
-                        console.log(value)
-                        $('#new_block').append('<option value="' + value.block_id + '">' + value
-                            .block_name + '</option>');
-                    });
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    $('.page-loader-wrapper').fadeOut();
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                    })
-                }
-            })
-        })
-
-        /* AJAX for get GP for Modal */
-
-        $(document).on('change', '#new_block', function(e) {
-            e.preventDefault()
-            var block_id = $(this).val();
-            $('.page-loader-wrapper').fadeIn();
-            $.ajax({
-                type: "GET",
-                url: "{{ route('get-gp') }}",
-                dataType: 'json',
-                data: {
-                    'block_id': block_id,
-                    "_token": "{{ csrf_token() }}"
-                },
-                success: function(data) {
-                    $('.page-loader-wrapper').fadeOut();
-                    if (data.msg == 'success') {
-                        console.log(data)
-                        $('#new_gramPanchayat').empty();
-                        $('#new_gramPanchayat').append($("<option value=''>Select</option>"));
-                        $.each(data.gp, function(index, value) {
-                            $('#new_gramPanchayat').append('<option value="' + value
-                                .gram_panchyat_id + '">' + value
-                                .gram_panchyat_name + '</option>');
-                        });
-                    }
-                    if (data.msg == 'failed') {
-                        $('.page-loader-wrapper').fadeOut();
-                        Swal.fire({
-                            type: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!'
-                        })
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    $('.page-loader-wrapper').fadeOut();
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                    })
-                }
-            })
-        })
     </script>
 @endsection
 @endsection

@@ -219,6 +219,8 @@ class TransferController extends Controller
                     ->select(
                         'employees.employee_code',
                         'employees.name',
+                        'employees.mobile',
+                        'employees.email',
                         'designations.designation_name',
                         'districts.district_name',
                         'blocks.block_name',
